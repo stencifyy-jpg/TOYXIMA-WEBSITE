@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOYXIMA | An Immersive Magical Toy World</title>
+  <meta name="description" content="Welcome to TOYXIMA! Discover heirloom wooden raceways, cloud-soft honey bears, and vibrant castle blocks in an immersive toy wonderland." />
+  <link rel="icon" type="image/png" href="assets/toyxima-elephant.png" />
+
+  <!-- Google Fonts: Outfit (Matches Toyxima Logo Typography), Fredoka & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Outfit', 'Fredoka', 'cursive', 'sans-serif'],
+            brand: ['Outfit', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brandText: '#48424B',
+            brandPink: '#D81B60',
+            cream: {
+              50: '#FFFEFA',
+              100: '#FAF7EE',
+              200: '#F5EEDC',
+              300: '#EBDDC0'
+            },
+            toy: {
+              orange: '#FF6E40',
+              yellow: '#FBBF24',
+              sky: '#38BDF8',
+              mint: '#34D399',
+              lavender: '#C084FC',
+              rose: '#FB7185',
+              wood: '#DEB887'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js CDN for 3D Hero Toy World -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-[#FAF7EE] text-[#2D231E] min-h-screen flex flex-col selection:bg-orange-200 selection:text-orange-900">
+
+  <!-- Main Navigation Header (Dynamic) -->
+  <header id="main-header" class="sticky top-0 z-40 glass-nav shadow-sm"></header>
+
+  <!-- Main View Container (Routed dynamically) -->
+  <main id="main-content" class="flex-1"></main>
+
+  <!-- Quick View / Checkout / Edit Modal Anchor -->
+  <div id="quick-view-modal"></div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-amber-200/80 pt-14 pb-10 text-xs text-stone-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-3">
+          <div class="flex items-center gap-2">
+            <img src="assets/toyxima-logo-transparent.png" alt="Toyxima" class="h-11 w-auto object-contain" />
+          </div>
+          <p class="text-stone-500 font-medium text-xs leading-relaxed max-w-sm">
+            Handcrafted childhood treasures engineered to spark boundless, screen-free imagination. 100% non-toxic, heirloom-grade materials, and free whimsical gift wrapping.
+          </p>
+          <div class="flex items-center gap-2 pt-2">
+            <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[11px] border border-emerald-200">
+              🌿 FSC Beechwood
+            </span>
+            <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 font-bold text-[11px] border border-sky-200">
+              🛡️ ASTM F963 Tested
+            </span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-black font-display text-sm text-amber-950 mb-3">Explore Play</h4>
+          <ul class="space-y-2 font-bold text-stone-600">
+            <li><a href="#home" class="hover:text-orange-600 transition-colors">Toyxima Home</a></li>
+            <li><a href="#shop" class="hover:text-orange-600 transition-colors">All Toy Collections</a></li>
+            <li><a href="#about" class="hover:text-orange-600 transition-colors">Our Workshop Story</a></li>
+            <li><a href="#contact" class="hover:text-orange-600 transition-colors">WhatsApp Concierge</a></li>
+            <li><a href="#admin" class="hover:text-orange-600 transition-colors text-orange-600">Inventory Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Toy Categories -->
+        <div>
+          <h4 class="font-black font-display text-sm text-amber-950 mb-3">Toy Realms</h4>
+          <ul class="space-y-2 font-bold text-stone-600">
+            <li><a href="#shop" class="hover:text-orange-600 transition-colors">Plushies & Bears</a></li>
+            <li><a href="#shop" class="hover:text-orange-600 transition-colors">Building Blocks & Castles</a></li>
+            <li><a href="#shop" class="hover:text-orange-600 transition-colors">Vehicles & Racers</a></li>
+            <li><a href="#shop" class="hover:text-orange-600 transition-colors">STEM & Planetary Kits</a></li>
+            <li><a href="#shop" class="hover:text-orange-600 transition-colors">Pretend Play & Bakeries</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Secret Toy Club -->
+        <div>
+          <h4 class="font-black font-display text-sm text-amber-950 mb-2">Secret Toy Club</h4>
+          <p class="text-stone-500 text-xs mb-3">Get secret discounts, new toy drops, and bedtime play ideas.</p>
+          <form id="newsletter-form" class="space-y-2">
+            <input
+              type="email"
+              required
+              placeholder="Enter your email..."
+              class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs focus:outline-none focus:border-orange-500 font-medium"
+            />
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs shadow-sm transition-all">
+              Join the Magic ✨
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-amber-200/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-stone-500">
+        <div>
+          © 2026 TOYXIMA Toys Co. All rights reserved. Made with love for little dreamers.
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1 font-bold text-emerald-700">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            WhatsApp Direct Order Ready
+          </span>
+          <span>|</span>
+          <a href="#admin" class="hover:underline font-bold text-stone-700">Toymaster Admin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Main Entry Point (ES Module) -->
+  <script type="module" src="js/app.js"></script>
+
+  <script>
+    // Newsletter submission feedback
+    document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('🌟 Welcome to the Secret Toy Club! Check your inbox for your 10% welcome voucher.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
